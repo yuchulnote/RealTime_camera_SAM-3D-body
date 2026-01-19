@@ -2,6 +2,12 @@
 
 웹캠 기반 실시간 3D 인체 메쉬 복원 시스템으로, 재활/의료 기기 산업에 특화된 기능을 제공합니다.
 
+## 데모 영상
+
+https://github.com/user-attachments/assets/3dmeshtest.mp4
+
+<video src="3dmeshtest.mp4" controls width="800"></video>
+
 ## 프로젝트 구조
 
 ```
