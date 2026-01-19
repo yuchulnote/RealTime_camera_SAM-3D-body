@@ -1,0 +1,49 @@
+# 설정 파일
+
+# 모델 설정
+model:
+  name: "sam3d_body"  # "dummy", "anny", 또는 "sam3d_body"
+  checkpoint_path: null  # 모델 체크포인트 경로 (null이면 HuggingFace 캐시에서 자동 찾기)
+  hf_repo_id: "facebook/sam-3d-body-dinov3"  # HuggingFace 저장소 ID
+  device: "cuda:0"  # "cuda:0", "cuda:1", "cpu"
+  input_resolution: [512, 512]  # 모델 입력 해상도 [width, height] (참고용, 모델이 자체 해상도 사용)
+  use_detector: false  # 사람 감지기 사용 여부 (true면 더 정확하지만 느림)
+  use_segmentor: false  # 마스크 세그멘터 사용 여부
+  use_fov_estimator: false  # FOV 추정기 사용 여부
+  
+# 웹캠 설정
+camera:
+  device_id: null  # 웹캠 장치 ID (null이면 자동 선택, 숫자로 지정 가능)
+  interactive_selection: true  # true면 사용자 입력으로 카메라 선택, false면 자동 선택
+  width: 640
+  height: 480
+  fps: 30
+
+# 파이프라인 설정
+pipeline:
+  frame_queue_size: 5  # 프레임 큐 최대 크기
+  mesh_queue_size: 5   # 메쉬 큐 최대 크기
+  inference_workers: 1  # 추론 워커 수 (GPU 메모리 고려)
+  target_fps: 30        # 목표 FPS
+
+# 시각화 설정
+visualization:
+  window_width: 800
+  window_height: 600
+  show_keypoints: true
+  show_skeleton: true
+  show_camera: true  # 카메라 영상 표시 여부 (OpenCV 윈도우)
+  mesh_color: [0.7, 0.7, 0.9]  # RGB [0-1]
+  
+# 분석 설정
+analytics:
+  enable_joint_angles: true
+  enable_asymmetry_analysis: true
+  enable_gait_analysis: false  # 보행 분석 (실험적)
+  timestamp_sync: true  # 타임스탬프 동기화 활성화
+
+# 로깅 설정
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_to_file: false
+  log_file_path: "logs/pipeline.log"
